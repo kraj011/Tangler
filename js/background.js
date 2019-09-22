@@ -29,14 +29,9 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 });
 
 function checkIfPhish(url) {
-  // send request to azure thing
-  // fetch('https://tangler.cognitiveservices.azure.com/')
-  //   .then(function (response) {
-  //     return response.json();
-  //   })
-  //   .then(function (myJson) {
-  //     console.log(JSON.stringify(myJson));
-  //   });
+  if (url.includes("google") || url.includes("yahoo") || url.includes("bing") || url.includes("gmail") || url.includes("shellhacks")) {
+    return false
+  }
   return true
 }
 
