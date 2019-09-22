@@ -46,7 +46,7 @@ function getExtensionType(url) {
     if (url.includes("&amp")) {
         return "amp";
     }
-    
+
     return "other";
 }
 
@@ -60,5 +60,6 @@ function getLongestString() {
             if (urlSplit[j].length > urlSplit[i].length) {
                 sequence = urlSplit[j];
             }
+        }
     }
 }
