@@ -1,0 +1,33 @@
+{
+    "manifest_version": 2,
+
+    "name": "Tangler",
+    "short_name": "Tangler",
+    "author": "The Boys",
+    "description": "Tangler: Advanced security against phising",
+    "version": "1.0.0",
+
+
+    "content_scripts": [{
+        "matches": [
+            "<all_urls>"
+        ],
+        "js": [
+            "js/content.js"
+        ],
+        "run_at": "document_end",
+        "persistent": true
+    }],
+    "background": {
+        "scripts": ["js/background.js"],
+        "persistent": true
+    },
+    "browser_action": {
+        "default_popup": "html/menu.html"
+    },
+    "permissions": ["declarativeContent", "storage", "tabs", "alarms", "webRequest", "webRequestBlocking"],
+
+    "web_accessible_resources": [
+        "css/style.css"
+    ]
+}
