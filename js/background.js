@@ -29,15 +29,19 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 });
 
 chrome.webRequest.onBeforeRequest.addListener(
-  function(details) {
-    return {redirectUrl: chrome.runtime.getURL("redirect.html")};
+  function (details) {
+    return {
+      redirectUrl: chrome.runtime.getURL("redirect.html")
+    };
+  }, {
+    urls: ["https://greatxkey.com/"],
+    types: ["main_frame", "sub_frame"]
   },
-  {urls: ["https://greatxkey.com/"], types: ["main_frame", "sub_frame"]},
   ["blocking"]
 );
 
 function checkIfPhish(url) {
-  if (url.includes("google") || url.includes("yahoo") || url.includes("bing") || url.includes("gmail") || url.includes("shellhacks")) {
+  if (url.includes("google") || url.includes("yahoo") || url.includes("bing") || url.includes("gmail") || url.includes("shellhacks") || url.includes("facebook")) {
     return false
   }
   return true

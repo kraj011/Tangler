@@ -1,8 +1,9 @@
 let backButton = document.createElement("a");
 // backButton.addEventListener('click', goBack);
-backButton.href = document.referrer + "?c=f"
-backButton.innerHTML = "Back"
-document.getElementsByTagName('body')[0].appendChild(backButton);
+backButton.addEventListener('click', goBack);
+backButton.innerHTML = "It's bait! Don't get reeled in! Swim back to safety here!"
+backButton.id = "redirect";
+document.getElementById('adiv').appendChild(backButton);
 
 let br = document.createElement("br");
 document.getElementsByTagName('body')[0].appendChild(br);
@@ -20,5 +21,5 @@ document.getElementsByTagName('body')[0].appendChild(proceedButton);
 
 
 function goBack() {
-    window.history.back();
+    window.history.go(-2);
 }
