@@ -17,7 +17,7 @@ var fs = require("fs");
 function processData(allText) {
     var allTextLines = allText.split(/\r\n|\n/);
 
-    allTextLines[0] += ",is_secure,extension_type,divider_count";
+    allTextLines[0] += ",is_secure,extension_type,longest_string,divider_count";
     var headers = allTextLines[0].split(',');
     var lines = [];
 
@@ -44,7 +44,7 @@ function processData(allText) {
         text += "\n";
     }
    
-    fs.writeFile('FIU_Phishing_Mitre.Dataset_New.csv', text, function (err) {
+    fs.writeFile('FIU_Phishing_Mitre_Dataset_New_2.csv', text, function (err) {
         if (err) throw err;
     });
 }
@@ -53,10 +53,12 @@ function addData(data) {
     var url = data[4];
     var secure = isSecure(url);
     var extensionType = getExtensionType(url);
+    var longestString = getLongestString(url);
     var dividerCount = getDividerCount(url);
 
     data.push(secure);
     data.push(extensionType);
+    data.push(longestString);
     data.push(dividerCount);
 }
 
@@ -74,10 +76,10 @@ function getUpdateAge(url) {
 
 function isSecure(url) {
     if (url.includes("https")) {
-        return true;
+        return 1;
     }
 
-    return false;
+    return 0;
 }
 
 function getExtensionType(url) {
@@ -89,19 +91,42 @@ function getExtensionType(url) {
         return "gov";
     }
 
-    if (url.includes(".html") || url.includes(".htm")) {
-        return "html";
-    }
-
     if (url.includes(".net")) {
         return "net";
+    }
+
+    if (url.includes(".edu")) {
+        return "edu";
     }
 
     if (url.includes(".org")) {
         return "org";
     }
 
+    if (url.includes(".html") || url.includes(".htm")) {
+        return "html";
+    }
+
+    if (url.includes("&amp")) {
+        return "amp";
+    }
+    
     return "other";
+}
+
+function getLongestString(url) {
+    let urlSplit = url.split("/");
+    var sequence = urlSplit[0];
+
+    for (let i = 1; i < urlSplit.length; i++) {
+        for (let j = i; j < urlSplit.length; j++) {
+            if (urlSplit[j].length > urlSplit[i].length) {
+                sequence = urlSplit[j];
+            }
+    }
+
+    return sequence.length;
+}
 }
 
 function getDividerCount(url) {

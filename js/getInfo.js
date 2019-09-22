@@ -27,22 +27,38 @@ function getExtensionType(url) {
         return "gov";
     }
 
-    if (url.includes(".html") || url.includes(".htm")) {
-        return "html";
-    }
-
     if (url.includes(".net")) {
         return "net";
+    }
+
+    if (url.includes(".edu")) {
+        return "edu";
     }
 
     if (url.includes(".org")) {
         return "org";
     }
 
+    if (url.includes(".html") || url.includes(".htm")) {
+        return "html";
+    }
+
+    if (url.includes("&amp")) {
+        return "amp";
+    }
+    
     return "other";
 }
 
-function getDividerCount(url) {
-    var count = (url.match(/\//g) || []).length;
-    return count;
+function getLongestString() {
+    let url = "";
+    let urlSplit = url.split("/");
+    var sequence = urlSplit[0];
+
+    for (let i = 1; i < urlSplit.length; i++) {
+        for (let j = i; j < urlSplit.length; j++) {
+            if (urlSplit[j].length > urlSplit[i].length) {
+                sequence = urlSplit[j];
+            }
+    }
 }
