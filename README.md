@@ -1,5 +1,5 @@
 # Tangler
-Tangler is a ~~joke~~ Chrome extension that uses state-of-the-art machine learning techniques to detect and divert you from phishing links.
+Tangler is a ~~joke~~ Chrome extension that uses state-of-the-art machine learning techniques to detect and divert users from phishing links.
 
 Built during ShellHacks 2019 at FIU. You can learn more about Tangler on our [Devpost submission.](https://devpost.com/software/tangler-53n1r4)
 
