@@ -1,4 +1,4 @@
-chrome.storage.local.get('isDisabled', function (result) {
+chrome.storage.local.get('isDisabled', (result) => {
 
     if (result.isDisabled === true) {
         // pop it up as disabled
@@ -18,7 +18,7 @@ chrome.storage.local.get('isDisabled', function (result) {
     }
 });
 
-function toggleEnabled() {
+const toggleEnabled = () => {
     let button = document.getElementById("enableButton");
     if (button.innerHTML.includes("Disable")) {
         chrome.storage.local.set({
